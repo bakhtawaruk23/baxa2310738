@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class StudentAddress extends Model
 {
     use HasFactory;
+
     protected $fillable = ['city_name']; 
+    
     public function student(){
         return $this->belongsTo(Student::class);
     }
