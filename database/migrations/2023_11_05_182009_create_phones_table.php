@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('phones', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id')->unsigned();
+            $table->string('phone');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 
