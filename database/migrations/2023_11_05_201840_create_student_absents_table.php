@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Student;
-use App\Models\Subject;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,10 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('student_subjects', function (Blueprint $table) {
+        Schema::create('student_absents', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('student_id')->references('id')->on('students')->cascadeOnDelete();
-            $table->foreignId('subject_id')->references('id')->on('subjects')->cascadeOnDelete();
-            $table->primary(['student_id', 'subject_id']);
+            $table->string('note');
+            $table->timestamps();
         });
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('student_subjects');
+        Schema::dropIfExists('student_absents');
     }
 };
