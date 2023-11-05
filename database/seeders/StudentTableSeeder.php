@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Student;
+use App\Models\StudentAddress;
 use Illuminate\Database\Seeder;
 
 class StudentTableSeeder extends Seeder
@@ -12,6 +13,6 @@ class StudentTableSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Student::factory()->count(30)->has(StudentAddress::factory())->create();
     }
 }

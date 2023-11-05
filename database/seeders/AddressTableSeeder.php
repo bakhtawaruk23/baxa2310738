@@ -12,6 +12,6 @@ class AddressTableSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        
     }
 }

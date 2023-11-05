@@ -10,7 +10,7 @@ class Student extends Model
     use HasFactory;
     protected $fillable = ['name'];
 
-    public function address(){
+    public function studentAddress(){
         return $this->hasOne(StudentAddress::class);
     }
 }
