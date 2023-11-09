@@ -18,33 +18,30 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     //many to many
+    $student = App\Models\Student::with('subject')->withCount('subject')->get();
 
-    // $student = App\Models\Student::with('subject')->withCount('subject')->get();
+    //many to many
+    $subject = Subject::with('student')
+        ->withCount('student')
+        ->get();
 
+    //one to one
+    $studentwithaddress = Student::with('studentAddress')
+        ->get();
 
+    //one to many
+    $studentAbsent = Student::with('studentAbsent')
+        ->withCount('studentAbsent')
+        ->get();
 
-    // //many to many
-    // $subject = Subject::with('student')
-    //     ->withCount('student')
-    //     ->get();
-
-    // //one to one
-    // $studentwithaddress = Student::with('studentAddress')
-    //     ->get();
-
-    // //one to many
-    // $studentAbsent = Student::with('studentAbsent')
-    //     ->withCount('studentAbsent')
-    //     ->get();
-
-    // return DB::table('students')
-    //     ->join('student_addresses', 'student_addresses.student_id', 'students.id')
-    //     ->select('students.name', 'student_addresses.city_name')
-    //     ->get();
+    return DB::table('students')
+        ->join('student_addresses', 'student_addresses.student_id', 'students.id')
+        ->select('students.name', 'student_addresses.city_name')
+        ->get();
 
     // return $studentAbsent;
     // return $studentwithaddress;
     //return $subject;
-    //return $student;
+    return $student;
 
 });
